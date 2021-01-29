@@ -47,4 +47,11 @@ public class Intro {
             System.out.println("Negative");
         }
     }
+
+//    6. Написать метод, которому в качестве параметра передается целое число.
+//    Метод должен вернуть true, если число отрицательное, и вернуть false если положительное.
+
+    private static boolean printTrueOrFalse(int digit) {
+        return digit < 0;
+    }
 }
