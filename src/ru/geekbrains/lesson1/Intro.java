@@ -61,4 +61,24 @@ public class Intro {
     private static void printName(String name) {
         System.out.println("Привет, " + name + "!");
     }
+
+//    8. * Написать метод, который определяет, является ли год високосным, и выводит сообщение в консоль.
+//    Каждый 4-й год является високосным, кроме каждого 100-го, при этом каждый 400-й – високосный.
+
+    private static void isLeapYear(int year) {
+        if (year == 0) {
+            System.out.println(year + " год. Новая эра, хз че за год :)");
+
+        } else if (year % 4 == 0 || year % 400 == 0) {
+            if (year % 100 == 0 && year % 400 != 0) {
+                System.out.println(year + " - Не високосный год");
+
+            } else {
+                System.out.println(year + " - Високосный год");
+            }
+
+        } else {
+            System.out.println(year + " - Не високосный год");
+        }
+    }
 }
