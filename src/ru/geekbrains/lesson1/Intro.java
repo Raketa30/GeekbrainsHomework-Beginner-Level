@@ -54,4 +54,11 @@ public class Intro {
     private static boolean printTrueOrFalse(int digit) {
         return digit < 0;
     }
+
+//    7. Написать метод, которому в качестве параметра передается строка, обозначающая имя.
+//    Метод должен вывести в консоль сообщение «Привет, указанное_имя!».
+
+    private static void printName(String name) {
+        System.out.println("Привет, " + name + "!");
+    }
 }
