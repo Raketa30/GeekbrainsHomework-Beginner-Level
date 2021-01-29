@@ -18,6 +18,8 @@ public class Intro {
         boolean bln = true;
 
         String str = "Hello geekbrains!";
+
+        test();
     }
 
 //    3. Написать метод, вычисляющий выражение a * (b + (c / d)) и возвращающий результат,
@@ -80,5 +82,40 @@ public class Intro {
         } else {
             System.out.println(year + " - Не високосный год");
         }
+    }
+
+    private static void test() {
+        System.out.println("3.");
+        System.out.println(expressionCalculating(10.0f, 12.2f, 1.1f, 20.2f));
+
+        System.out.println("4.");
+        System.out.println(isMoreThanTenAndLessThenTwenty(5, 2));
+        System.out.println(isMoreThanTenAndLessThenTwenty(5, 5));
+        System.out.println(isMoreThanTenAndLessThenTwenty(5, 10));
+        System.out.println(isMoreThanTenAndLessThenTwenty(10, 10));
+        System.out.println(isMoreThanTenAndLessThenTwenty(10, 11));
+
+        System.out.println("5.");
+        printPositiveOrNegative(-1);
+        printPositiveOrNegative(0);
+        printPositiveOrNegative(2);
+
+        System.out.println("6.");
+        System.out.println(printTrueOrFalse(-1));
+        System.out.println(printTrueOrFalse(0));
+        System.out.println(printTrueOrFalse(3));
+
+        System.out.println("7.");
+        printName("Игорь Кульгачев");
+
+        System.out.println("8.");
+        isLeapYear(2021);
+        isLeapYear(2016);
+        isLeapYear(2000);
+        isLeapYear(1900);
+        isLeapYear(1800);
+        isLeapYear(1600);
+        isLeapYear(0);
+        isLeapYear(1973);
     }
 }
