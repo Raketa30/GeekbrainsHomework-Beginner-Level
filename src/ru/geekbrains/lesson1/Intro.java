@@ -19,11 +19,20 @@ public class Intro {
 
         String str = "Hello geekbrains!";
     }
-    
+
 //    3. Написать метод, вычисляющий выражение a * (b + (c / d)) и возвращающий результат,
 //    где a, b, c, d – аргументы этого метода, имеющие тип float.
 
     private static float expressionCalculating(float a, float b, float c, float d) {
         return a * (b + (c / d));
+    }
+
+//    4. Написать метод, принимающий на вход два целых числа и проверяющий,
+//     что их сумма лежит в пределах от 10 до 20 (включительно),
+//     если да – вернуть true, в противном случае – false.
+
+    private static boolean isMoreThanTenAndLessThenTwenty(int firstDigit, int secondDigit) {
+        int sum = firstDigit + secondDigit;
+        return sum >= 10 && sum <= 20;
     }
 }
