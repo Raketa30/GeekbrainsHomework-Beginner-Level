@@ -35,4 +35,16 @@ public class Intro {
         int sum = firstDigit + secondDigit;
         return sum >= 10 && sum <= 20;
     }
+
+//    5. Написать метод, которому в качестве параметра передается целое число,
+//    метод должен напечатать в консоль, положительное ли число передали или отрицательное.
+//    Замечание: ноль считаем положительным числом.
+
+    private static void printPositiveOrNegative(int digit) {
+        if (digit >= 0) {
+            System.out.println("Positive");
+        } else {
+            System.out.println("Negative");
+        }
+    }
 }
