@@ -43,6 +43,33 @@ public class ArraysAndLoops {
         findMinAndMax(fifthArray);
         System.out.println();
 
+
+//        6.** Написать метод, в который передается не пустой одномерный целочисленный массив,
+//        метод должен вернуть true, если в массиве есть место, в котором сумма левой и правой части массива равны.
+//        Примеры: checkBalance([2, 2, 2, 1, 2, 2, || 10, 1]) → true, checkBalance([1, 1, 1, || 2, 1]) → true,
+//        граница показана символами ||, эти символы в массив не входят.
+        System.out.println("Task 6");
+        int[] sixTestArrayOne = fillArray(8, 10);
+        System.out.println(Arrays.toString(sixTestArrayOne));
+        System.out.println(checkBalance(sixTestArrayOne));
+
+        int[] sixTestArrayTwo = fillArray(6, 8);
+        System.out.println(Arrays.toString(sixTestArrayTwo));
+        System.out.println(checkBalance(sixTestArrayTwo));
+
+        int[] sixTestArrayThree = fillArray(10, 5);
+        System.out.println(Arrays.toString(sixTestArrayThree));
+        System.out.println(checkBalance(sixTestArrayThree));
+
+        int[] sixTestArrayFour = {2, 2, 2, 1, 2, 2, 10, 1};
+        System.out.println(Arrays.toString(sixTestArrayFour));
+        System.out.println(checkBalance(sixTestArrayFour));
+
+        int[] sixTestArrayFive = {1, 1, 1, 2, 1};
+        System.out.println(Arrays.toString(sixTestArrayFive));
+        System.out.println(checkBalance(sixTestArrayFive));
+
+
     }
 
     private static int[] change0to1(int[] arr){
@@ -130,5 +157,26 @@ public class ArraysAndLoops {
         }
 
         return arr;
+    }
+
+    private static boolean checkBalance(int[] arr) {
+        boolean flag = false;
+        int sum = 0;
+        for(int i : arr) {
+            sum += i;
+        }
+
+        int nextSum = 0;
+        for (int i = arr.length - 1; i > 0; i--) {
+            nextSum += arr[i];
+            sum -= arr[i];
+
+            if(sum == nextSum) {
+                flag = true;
+                break;
+            }
+        }
+
+        return flag;
     }
 }
