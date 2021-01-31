@@ -1,13 +1,14 @@
 package ru.geekbrains.lesson2;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class ArraysAndLoops {
     public static void main(String[] args) {
 //        1. Задать целочисленный массив, состоящий из элементов 0 и 1.
 //        Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ].
 //        С помощью цикла и условия заменить 0 на 1, 1 на 0;
-        int[] firstArray = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
+        int[] firstArray = fillArray(10, 2);
         System.out.println("Task 1");
         System.out.println(Arrays.toString(firstArray));
         System.out.println(Arrays.toString(change0to1(firstArray)));
@@ -17,13 +18,14 @@ public class ArraysAndLoops {
 //        С помощью цикла заполнить его значениями 0 3 6 9 12 15 18 21;
         int size = 8;
         System.out.println("Task 2");
-        System.out.println(Arrays.toString(fillArray(size)));
+        System.out.println(Arrays.toString(increaseByThree(size)));
         System.out.println();
 
 //        3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ]
 //        пройти по нему циклом, и числа меньшие 6 умножить на 2;
         int[] thirdArray = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         System.out.println("Task 3");
+        System.out.println(Arrays.toString(thirdArray));
         System.out.println(Arrays.toString(findDigitsLowerThanSix(thirdArray)));
         System.out.println();
 
@@ -35,8 +37,9 @@ public class ArraysAndLoops {
         System.out.println();
 
 //        5. ** Задать одномерный массив и найти в нем минимальный и максимальный элементы (без помощи интернета);
-        int[] fifthArray = {2, 4, 6, 21, 1, 8, 99, 22, 0, 11, 3, -2};
+        int[] fifthArray = fillArray(12, 50);
         System.out.println("Task 5");
+        System.out.println(Arrays.toString(fifthArray));
         findMinAndMax(fifthArray);
         System.out.println();
 
@@ -55,7 +58,7 @@ public class ArraysAndLoops {
         return changed;
     }
 
-    private static int[] fillArray(int size) {
+    private static int[] increaseByThree(int size) {
         int[] arr = new int[size];
 
         for (int i = 0; i < size; i++) {
@@ -101,8 +104,8 @@ public class ArraysAndLoops {
     }
 
     private static void findMinAndMax(int[] arr) {
-        int min = 0;
-        int max = 0;
+        int min = arr[0];
+        int max = arr[0];
 
         for (int i : arr) {
             if (i < min) {
@@ -118,4 +121,14 @@ public class ArraysAndLoops {
         System.out.println("max: " + max);
     }
 
+    private static int[] fillArray(int size, int maxRange) {
+        int[] arr = new int[size];
+        Random random = new Random();
+
+        for(int i = 0; i < size; i++) {
+            arr[i] = random.nextInt(maxRange);
+        }
+
+        return arr;
+    }
 }
