@@ -70,6 +70,20 @@ public class ArraysAndLoops {
         System.out.println(checkBalance(sixTestArrayFive));
 
 
+//        7. **** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным,
+//        или отрицательным), при этом метод должен сместить все элементы массива на n позиций.
+//        Элементы смещаются циклично. Для усложнения задачи нельзя пользоваться вспомогательными массивами.
+//        Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ];
+//        [ 3, 5, 6, 1] при n = -2 (на два влево) -> [ 6, 1, 3, 5 ]. При каком n в какую сторону сдвиг можете выбирать сами.
+
+        System.out.println("Task 7");
+        int[] sevenArray = fillArray(10, 10);
+        int range = shiftRandom(11);
+        System.out.println(Arrays.toString(sevenArray));
+        shiftArray(sevenArray, range);
+        System.out.println(Arrays.toString(sevenArray));
+
+
     }
 
     private static int[] change0to1(int[] arr){
@@ -178,5 +192,38 @@ public class ArraysAndLoops {
         }
 
         return flag;
+    }
+
+    private static int shiftRandom(int range) {
+        Random random = new Random();
+        return random.nextInt(range) - random.nextInt(range);
+    }
+
+    private static void shiftArray(int[] arr, int shiftRange) {
+        if (shiftRange == 0) {
+            System.out.println("do nothing!");
+            return;
+        }
+        if (shiftRange > 0) {
+            System.out.println("-> " + shiftRange);
+            for (int i = 0; i < shiftRange; i++) {
+                int temp = arr[arr.length - 1];
+                for (int j = arr.length - 1; j > 0; j--) {
+                    arr[j] = arr[j - 1];
+
+                }
+                arr[0] = temp;
+            }
+        } else {
+            System.out.println("<- " + shiftRange);
+            for (int i = shiftRange; i < 0; i++) {
+                int temp = arr[0];
+                for (int j = 0; j < arr.length - 1; j++) {
+                    arr[j] = arr[j + 1];
+
+                }
+                arr[arr.length - 1] = temp;
+            }
+        }
     }
 }
