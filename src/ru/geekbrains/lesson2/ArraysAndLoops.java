@@ -11,19 +11,29 @@ public class ArraysAndLoops {
         System.out.println("Task 1");
         System.out.println(Arrays.toString(firstArray));
         System.out.println(Arrays.toString(change0to1(firstArray)));
+        System.out.println();
 
 //        2. Задать пустой целочисленный массив размером 8.
 //        С помощью цикла заполнить его значениями 0 3 6 9 12 15 18 21;
         int size = 8;
         System.out.println("Task 2");
         System.out.println(Arrays.toString(fillArray(size)));
+        System.out.println();
 
 //        3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ]
 //        пройти по нему циклом, и числа меньшие 6 умножить на 2;
         int[] thirdArray = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         System.out.println("Task 3");
         System.out.println(Arrays.toString(findDigitsLowerThanSix(thirdArray)));
+        System.out.println();
 
+//        4. Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое)
+//        и с помощью цикла(-ов) заполнить его диагональные элементы единицами;
+        int len = 10;
+        System.out.println("Task 4");
+        printMatrix(fillDiagonalByOne(len));
+        System.out.println();
+        
     }
 
     private static int[] change0to1(int[] arr){
@@ -61,5 +71,26 @@ public class ArraysAndLoops {
         }
 
         return changedArr;
+    }
+
+    private static int[][] fillDiagonalByOne(int len) {
+        int[][] array = new int[len][len];
+        for(int i = 0; i < len; i++) {
+            for(int j = 0; j < len; j++) {
+                if(j == i) {
+                    array[i][j] = 1;
+                }
+            }
+        }
+        return array;
+    }
+
+    private static void printMatrix(int[][] matrix) {
+        for (int[] ints : matrix) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
+        }
     }
 }
