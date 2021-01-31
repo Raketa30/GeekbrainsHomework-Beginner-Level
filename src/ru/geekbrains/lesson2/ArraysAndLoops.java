@@ -33,7 +33,13 @@ public class ArraysAndLoops {
         System.out.println("Task 4");
         printMatrix(fillDiagonalByOne(len));
         System.out.println();
-        
+
+//        5. ** Задать одномерный массив и найти в нем минимальный и максимальный элементы (без помощи интернета);
+        int[] fifthArray = {2, 4, 6, 21, 1, 8, 99, 22, 0, 11, 3, -2};
+        System.out.println("Task 5");
+        findMinAndMax(fifthArray);
+        System.out.println();
+
     }
 
     private static int[] change0to1(int[] arr){
@@ -93,4 +99,23 @@ public class ArraysAndLoops {
             System.out.println();
         }
     }
+
+    private static void findMinAndMax(int[] arr) {
+        int min = 0;
+        int max = 0;
+
+        for (int i : arr) {
+            if (i < min) {
+                min = i;
+            }
+
+            if(i > max) {
+                max = i;
+            }
+        }
+
+        System.out.println("min: " + min);
+        System.out.println("max: " + max);
+    }
+
 }
