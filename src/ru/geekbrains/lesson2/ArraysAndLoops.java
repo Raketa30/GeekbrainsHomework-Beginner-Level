@@ -126,9 +126,10 @@ public class ArraysAndLoops {
     private static int[][] fillDiagonalByOne(int len) {
         int[][] array = new int[len][len];
         for(int i = 0; i < len; i++) {
-            for(int j = 0; j < len; j++) {
+            for(int j = 0, k = len - 1; j < len; j++, k--) {
                 if(j == i) {
                     array[i][j] = 1;
+                    array[i][k] = 1;
                 }
             }
         }
