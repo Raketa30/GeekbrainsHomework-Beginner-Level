@@ -68,6 +68,7 @@ public class ArraysAndLoops {
         int[] sixTestArrayFive = {1, 1, 1, 2, 1};
         System.out.println(Arrays.toString(sixTestArrayFive));
         System.out.println(checkBalance(sixTestArrayFive));
+        System.out.println();
 
 
 //        7. **** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным,
