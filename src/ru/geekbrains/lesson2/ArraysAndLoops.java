@@ -176,7 +176,6 @@ public class ArraysAndLoops {
     }
 
     private static boolean checkBalance(int[] arr) {
-        boolean flag = false;
         int sum = 0;
         for(int i : arr) {
             sum += i;
@@ -188,12 +187,10 @@ public class ArraysAndLoops {
             sum -= arr[i];
 
             if(sum == nextSum) {
-                flag = true;
-                break;
+                return true;
             }
         }
-
-        return flag;
+        return false;
     }
 
     private static int shiftRandom(int range) {
