@@ -12,7 +12,7 @@ public class GuessTheNumber {
     private static boolean game = true;
 
     public static void main(String[] args) {
-        while(game) {
+        while (game) {
             System.out.println("Угадай число от 0 до 9 с трёх попыток");
             System.out.println("Загадываем число....");
 
@@ -22,15 +22,11 @@ public class GuessTheNumber {
 
             play(randomNumber);
 
-            System.out.println("Сыграем еще? Введите: \n"
-                    + "Да -  для новой игры \n" +
-                    "Нет - для выхода..");
-
             game = playAgain();
         }
     }
     private static void play(int randomNumber) {
-        for(int i = 3; i > 0; i--) {
+        for (int i = 3; i > 0; i--) {
             System.out.println("Количество попыток: " + i);
             System.out.println("Введите число от 0 до 9: ");
 
@@ -52,10 +48,14 @@ public class GuessTheNumber {
     }
 
     private static boolean playAgain() {
-        while(true) {
+        System.out.println("Сыграем еще? Введите: \n"
+                + "Да -  для новой игры \n" +
+                "Нет - для выхода..");
+
+        while (true) {
            String answer = scanner.next();
 
-            if(answer.toLowerCase().equals("да")) {
+            if (answer.toLowerCase().equals("да")) {
                 System.out.println("Круто! Поехали снова!");
                 return true;
 
