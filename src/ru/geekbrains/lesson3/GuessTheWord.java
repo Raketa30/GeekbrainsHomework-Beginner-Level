@@ -1,7 +1,9 @@
 package ru.geekbrains.lesson3;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
-import java.util.Scanner;
 
 /*
 * Создать массив из слов
@@ -23,30 +25,39 @@ char a = str.charAt(0); - метод, вернет char, который стои
 Используем только буквы в нижнем регистре.
  */
 public class GuessTheWord {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static boolean game = true;
     private static final String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado",
             "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango",
             "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        System.out.println("Добро пожаловать в игру \"Угадай слово!\"");
+        System.out.println("Для выхода введите - exit");
         while (game) {
+            System.out.println("Загадываем...");
             String randomWord = takeRandomWord();
-            System.out.println(randomWord);
             checkWord(randomWord);
 
             game = playAgain();
         }
     }
 
-    private static void checkWord(String randomWord) {
-        System.out.println("Введите слово:");
+    private static void checkWord(String randomWord) throws IOException {
+        String userWord;
 
         while(true) {
-            String userWord = scanner.next();
+            System.out.println("Введите слово:");
+            userWord = reader.readLine();
+
             if (randomWord.equals(userWord)) {
                 System.out.println("Верно! Вы победили!");
                 return;
+
+            } else if (userWord.equals("exit")) {
+                System.out.println("Загаданное слово - " + randomWord);
+                return;
+
             } else {
                 compareWords(randomWord, userWord);
             }
@@ -76,27 +87,27 @@ public class GuessTheWord {
         return words[random.nextInt(words.length)];
     }
 
-    private static boolean playAgain() {
+    private static boolean playAgain() throws IOException {
         System.out.println("Сыграем еще? Введите: \n"
-                + "Да -  для новой игры \n" +
-                "Нет - для выхода..");
+                + "Yes -  для новой игры \n" +
+                "No - для выхода..");
 
         while (true) {
-            String answer = scanner.next();
+            String answer = reader.readLine();
 
-            if (answer.toLowerCase().equals("да")) {
+            if (answer.toLowerCase().equals("yes")) {
                 System.out.println("Круто! Поехали снова!");
                 return true;
 
-            } else if (answer.toLowerCase().equals("нет")) {
+            } else if (answer.toLowerCase().equals("no")) {
                 System.out.println("Спасибо! Досвидания!");
-                scanner.close();
+                reader.close();
                 return false;
 
             } else {
                 System.out.println("Неправильный ввод, Введите: \n"
-                        + "Да -  для новой игры \n" +
-                        "Нет - для выхода..");
+                        + "Yes -  для новой игры \n" +
+                        "No - для выхода..");
             }
         }
     }
