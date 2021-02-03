@@ -49,25 +49,25 @@ public class GuessTheNumber {
 
     private static boolean playAgain() {
         System.out.println("Сыграем еще? Введите: \n"
-                + "Да -  для новой игры \n" +
-                "Нет - для выхода..");
+                + "1 -  для новой игры \n" +
+                "0 - для выхода..");
 
         while (true) {
            String answer = scanner.next();
 
-            if (answer.toLowerCase().equals("да")) {
+            if (answer.equals("1")) {
                 System.out.println("Круто! Поехали снова!");
                 return true;
 
-            } else if (answer.toLowerCase().equals("нет")) {
+            } else if (answer.equals("0")) {
                 System.out.println("Спасибо! Досвидания!");
                 scanner.close();
                 return false;
 
             } else {
                 System.out.println("Неправильный ввод, Введите: \n"
-                        + "Да -  для новой игры \n" +
-                        "Нет - для выхода..");
+                        + "1 -  для новой игры \n" +
+                        "0 - для выхода..");
             }
         }
     }
