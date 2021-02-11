@@ -7,7 +7,7 @@ public class TicTacToe {
     private static final char EMPTY_AREA = '•';
     private static final char USER_POINT = 'X';
     private static final char AI_POINT = 'O';
-    private static final int SIZE = 3;
+    private static final int SIZE = 4;
     private static final int LENGTH = 3;
     private static char[][] field;
     private static final Scanner scanner = new Scanner(System.in);
@@ -83,22 +83,22 @@ public class TicTacToe {
 
     private static void doHumanStep() {
         System.out.println("Введите два числа через пробел:");
-        int x;
-        int y;
+        int xAxis;
+        int yAxis;
 
         do {
             while (true) {
                 String step = scanner.nextLine();
                 if (checkUserInput(step)) {
                     String[] steps = step.split("\\s+");
-                    x = Integer.parseInt(steps[0]) - 1;
-                    y = Integer.parseInt(steps[1]) - 1;
+                    xAxis = Integer.parseInt(steps[0]) - 1;
+                    yAxis = Integer.parseInt(steps[1]) - 1;
                     break;
                 }
                 System.out.println("Повторите ввод:");
             }
-        } while (isValidCell(y, x));
-        field[y][x] = USER_POINT;
+        } while (isValidCell(yAxis, xAxis));
+        field[yAxis][xAxis] = USER_POINT;
     }
 
     private static boolean checkUserInput(String step) {
@@ -108,27 +108,22 @@ public class TicTacToe {
 
     private static void doAiStep() {
         System.out.println("Ход ИИ..");
-        Random random = new Random();
-
-        int x;
-        int y;
+        int[] axises;
 
         do {
-            x = random.nextInt(SIZE);
-            y = random.nextInt(SIZE);
+            axises = checkAIStep();
+        } while (isValidCell(axises[0], axises[1]));
 
-        } while (isValidCell(y, x));
-
-        field[y][x] = AI_POINT;
-        System.out.println("Компьютер походил в точку " + (x + 1) + " " + (y + 1));
+        field[axises[0]][axises[1]] = AI_POINT;
+        System.out.println("Компьютер походил в точку " + (axises[1] + 1) + " " + (axises[0] + 1));
     }
 
-    private static boolean isValidCell(int y, int x) {
+    private static boolean isValidCell(int x, int y) {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
             System.out.println("Повторите ввод:");
             return true;
         }
-        return field[y][x] != EMPTY_AREA;
+        return field[x][y] != EMPTY_AREA;
     }
 
     private static boolean isFullField() {
@@ -140,21 +135,6 @@ public class TicTacToe {
             }
         }
         return true;
-    }
-
-    private static int random(int first, int second) {
-        Random random = new Random();
-        int coin = random.nextInt(2);
-
-        if (coin == 0) {
-            return first;
-        }
-        return second;
-    }
-
-    private static int flipCoin() {
-        Random random = new Random();
-        return random.nextInt(2);
     }
 
     //Методы проверки выиграша
@@ -279,27 +259,83 @@ public class TicTacToe {
         return null;
     }
 
-    private static int[] checkHorizLine(char user) {
-        int[] axises = new int[2];
+    private static int[] checkAIStep() {
+        Random random = new Random();
+
+        int[] randomStep = {random.nextInt(SIZE), random.nextInt(SIZE), 0};
+        int[] horizontalStep = horizontalStep();
+        int[] verticalStep = verticalPoint();
+
+        if (horizontalStep[2] > verticalStep[2]) {
+            return horizontalStep;
+        }
+
+        if (verticalStep[2] > horizontalStep[2]) {
+            return verticalStep;
+
+        }
+
+        return randomStep;
+
+    }
+
+    private static int[] horizontalStep() {
+        int[] horizontalPoint = new int[3];
+        int[] additionalPoint = new int[2];
+
         for (int i = 0; i < SIZE; i++) {
             int counter = 0;
 
             for (int j = 0; j < SIZE; j++) {
-                if (field[i][j] == user) {
+                if (field[i][j] == USER_POINT) {
+                    if (j != 0 && field[i][j - 1] == EMPTY_AREA) {
+                        additionalPoint[0] = i;
+                        additionalPoint[1] = j;
+                    }
                     counter++;
                 }
-                if (counter >= 2) {
-                    axises[0] = j + 1;
-                    axises[1] = i + 1;
-                    return axises;
-                }
-                if (field[i][j] != user) {
+
+                if (field[i][j] == EMPTY_AREA) {
+                    if (counter > horizontalPoint[2]) {
+                        horizontalPoint[2] = counter;
+                        horizontalPoint[1] = random(j, additionalPoint[1]);
+                        horizontalPoint[0] = i;
+                    }
                     counter = 0;
                 }
             }
         }
+        return horizontalPoint;
+    }
 
-        return null;
+    private static int[] verticalPoint() {
+        int[] verticalPoint = new int[3];
+        int[] additionalPoint = new int[2];
+
+        for (int i = 0; i < SIZE; i++) {
+            int counter = 0;
+
+            for (int j = 0; j < SIZE; j++) {
+                if (field[j][i] == USER_POINT) {
+                    if (i != 0 && field[j][i - 1] == EMPTY_AREA) {
+                        additionalPoint[0] = j;
+                        additionalPoint[1] = i;
+                    }
+                    counter++;
+                }
+
+                if (field[j][i] == EMPTY_AREA) {
+                    if (counter > verticalPoint[2]) {
+                        verticalPoint[2] = counter;
+                        verticalPoint[1] = random(i, additionalPoint[1]);
+                        verticalPoint[0] = j;
+                    }
+                    counter = 0;
+                }
+            }
+        }
+        return verticalPoint;
+
     }
 
     private static int[] checkDiagonalLine(char user) {
@@ -365,5 +401,31 @@ public class TicTacToe {
 
         return null;
     }
+
+    private static int random(int first, int second) {
+        Random random = new Random();
+        int coin = random.nextInt(2);
+
+        if (coin == 0) {
+            return first;
+        }
+        return second;
+    }
+
+    private static int[] randomArray(int[] first, int[] second) {
+        Random random = new Random();
+        int coin = random.nextInt(2);
+
+        if (coin == 0) {
+            return first;
+        }
+        return second;
+    }
+
+    private static int flipCoin() {
+        Random random = new Random();
+        return random.nextInt(2);
+    }
+
 
 }
