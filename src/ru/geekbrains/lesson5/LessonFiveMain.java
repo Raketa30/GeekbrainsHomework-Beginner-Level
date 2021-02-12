@@ -18,7 +18,7 @@ public class LessonFiveMain {
         employees.add(new Employee("Vitaliy Prislupskiy", "Senior Engineer",
                 "v.prislupskiy@telemenia.com", "+3-050-222-32-99", 3500, 40));
         employees.add(new Employee("Sergey Shataluk", "Senior Electrical Engineer",
-                "v.prislupskiy", "+3-098-255-66-99", 3500, 52));
+                "shataliuk@telemenia.com", "+3-098-255-66-99", 3400, 52));
     }
 
     private static void print(int age) {
