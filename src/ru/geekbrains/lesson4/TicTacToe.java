@@ -7,7 +7,7 @@ public class TicTacToe {
     private static final char EMPTY_AREA = '•';
     private static final char USER_POINT = 'X';
     private static final char AI_POINT = 'O';
-    private static final int SIZE = 4;
+    private static final int SIZE = 3;
     private static final int LENGTH = 3;
     private static char[][] field;
     private static final Scanner scanner = new Scanner(System.in);
@@ -235,30 +235,6 @@ public class TicTacToe {
     }
 
     //Методы для ИИ
-
-    private static int[] checkVertLine(char user) {
-        int[] axises = new int[2];
-        for (int i = 0; i < SIZE; i++) {
-            int counter = 0;
-
-            for (int j = 0; j < SIZE; j++) {
-                if (field[j][i] == user) {
-                    counter++;
-                }
-                if (counter == 2) {
-                    axises[0] = j;
-                    axises[1] = i;
-                    return axises;
-                }
-                if (field[j][i] != user) {
-                    counter = 0;
-                }
-            }
-        }
-
-        return null;
-    }
-
     private static int[] checkAIStep() {
         Random random = new Random();
 
@@ -272,11 +248,9 @@ public class TicTacToe {
 
         if (verticalStep[2] > horizontalStep[2]) {
             return verticalStep;
-
         }
 
         return randomStep;
-
     }
 
     private static int[] horizontalStep() {
@@ -290,7 +264,7 @@ public class TicTacToe {
                 if (field[i][j] == USER_POINT) {
                     if (j != 0 && field[i][j - 1] == EMPTY_AREA) {
                         additionalPoint[0] = i;
-                        additionalPoint[1] = j;
+                        additionalPoint[1] = j - 1;
                     }
                     counter++;
                 }
@@ -319,7 +293,7 @@ public class TicTacToe {
                 if (field[j][i] == USER_POINT) {
                     if (i != 0 && field[j][i - 1] == EMPTY_AREA) {
                         additionalPoint[0] = j;
-                        additionalPoint[1] = i;
+                        additionalPoint[1] = i - 1;
                     }
                     counter++;
                 }
@@ -338,70 +312,6 @@ public class TicTacToe {
 
     }
 
-    private static int[] checkDiagonalLine(char user) {
-        int[] axises = new int[2];
-        int index = SIZE - LENGTH;
-
-        for (int i = 0; i <= index; i++) {
-            int counter1 = 0;
-            int counter2 = 0;
-            int counter3 = 0;
-            int counter4 = 0;
-
-            int leftRightIndex = i;
-            int rightLeftIndex = SIZE - 1; // 4
-            for (int j = 0; j < SIZE - i; j++) {
-                if (field[leftRightIndex][j] == user) {
-                    counter1++;
-                    if (counter1 >= 2) {
-                        axises[0] = leftRightIndex + 1;
-                        axises[1] = j + 1;
-                    }
-                } else {
-                    counter1 = 0;
-                }
-
-                if (field[j][leftRightIndex] == user) {
-                    counter2++;
-                    if (counter2 >= 2) {
-                        axises[0] = j + 1;
-                        axises[1] = leftRightIndex + 1;
-                        return axises;
-                    }
-                } else {
-                    counter2 = 0;
-                }
-
-                if (field[j][rightLeftIndex] == user) {
-                    counter3++;
-                    if (counter3 >= 2) {
-                        axises[0] = j + 1;
-                        axises[1] = leftRightIndex + 1;
-                        return axises;
-                    }
-                } else {
-                    counter3 = 0;
-                }
-
-                if (field[leftRightIndex][rightLeftIndex] == user) {
-                    counter4++;
-                    if (counter4 >= 2) {
-                        axises[0] = leftRightIndex + 1;
-                        axises[1] = leftRightIndex + 1;
-                        return axises;
-                    }
-                } else {
-                    counter4 = 0;
-                }
-
-                leftRightIndex++;
-                rightLeftIndex--;
-            }
-        }
-
-        return null;
-    }
-
     private static int random(int first, int second) {
         Random random = new Random();
         int coin = random.nextInt(2);
@@ -412,20 +322,50 @@ public class TicTacToe {
         return second;
     }
 
-    private static int[] randomArray(int[] first, int[] second) {
-        Random random = new Random();
-        int coin = random.nextInt(2);
+    //Не использующиеся методы(временно)
 
-        if (coin == 0) {
-            return first;
-        }
-        return second;
-    }
-
-    private static int flipCoin() {
-        Random random = new Random();
-        return random.nextInt(2);
-    }
-
+//    private static int[] randomArray(int[] first, int[] second) {
+//        Random random = new Random();
+//        int coin = random.nextInt(2);
+//
+//        if (coin == 0) {
+//            return first;
+//        }
+//        return second;
+//    }
+//
+//    private static int flipCoin() {
+//        Random random = new Random();
+//        return random.nextInt(2);
+//    }
+//
+//    private static int[] checkDiagonalLine() {
+//
+//        return null;
+//    }
+//
+//    private static int[] checkVertLine(char user) {
+//        int[] axises = new int[2];
+//        for (int i = 0; i < SIZE; i++) {
+//            int counter = 0;
+//
+//            for (int j = 0; j < SIZE; j++) {
+//                if (field[j][i] == user) {
+//                    counter++;
+//                }
+//                if (counter == 2) {
+//                    axises[0] = j;
+//                    axises[1] = i;
+//                    return axises;
+//                }
+//                if (field[j][i] != user) {
+//                    counter = 0;
+//                }
+//            }
+//        }
+//
+//        return null;
+//    }
+//
 
 }
