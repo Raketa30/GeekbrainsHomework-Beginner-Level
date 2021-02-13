@@ -87,10 +87,10 @@ public class ArraysAndLoops {
 
     }
 
-    private static int[] change0to1(int[] arr){
+    private static int[] change0to1(int[] arr) {
         int[] changed = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i] == 0) {
+            if (arr[i] == 0) {
                 changed[i] = 1;
             } else {
                 changed[i] = 0;
@@ -113,7 +113,7 @@ public class ArraysAndLoops {
     private static int[] findDigitsLowerThanSix(int[] arr) {
         int[] changedArr = new int[arr.length];
 
-        for (int i = 0; i < arr.length; i++)  {
+        for (int i = 0; i < arr.length; i++) {
             if (arr[i] < 6) {
                 changedArr[i] = arr[i] * 2;
             } else {
@@ -126,9 +126,9 @@ public class ArraysAndLoops {
 
     private static int[][] fillDiagonalByOne(int len) {
         int[][] array = new int[len][len];
-        for(int i = 0; i < len; i++) {
-            for(int j = 0, k = len - 1; j < len; j++, k--) {
-                if(j == i) {
+        for (int i = 0; i < len; i++) {
+            for (int j = 0, k = len - 1; j < len; j++, k--) {
+                if (j == i) {
                     array[i][j] = 1;
                     array[i][k] = 1;
                 }
@@ -155,7 +155,7 @@ public class ArraysAndLoops {
                 min = i;
             }
 
-            if(i > max) {
+            if (i > max) {
                 max = i;
             }
         }
@@ -168,7 +168,7 @@ public class ArraysAndLoops {
         int[] arr = new int[size];
         Random random = new Random();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             arr[i] = random.nextInt(maxRange);
         }
 
@@ -177,7 +177,7 @@ public class ArraysAndLoops {
 
     private static boolean checkBalance(int[] arr) {
         int sum = 0;
-        for(int i : arr) {
+        for (int i : arr) {
             sum += i;
         }
 
@@ -186,7 +186,7 @@ public class ArraysAndLoops {
             nextSum += arr[i];
             sum -= arr[i];
 
-            if(sum == nextSum) {
+            if (sum == nextSum) {
                 return true;
             }
         }

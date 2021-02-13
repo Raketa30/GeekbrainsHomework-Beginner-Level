@@ -16,7 +16,7 @@ public class GuessTheNumber {
             System.out.println("Угадай число от 0 до 9 с трёх попыток");
             System.out.println("Загадываем число....");
 
-            int randomNumber = (int)(Math.random() * 10);
+            int randomNumber = (int) (Math.random() * 10);
 
             System.out.println(randomNumber);
 
@@ -25,6 +25,7 @@ public class GuessTheNumber {
             game = playAgain();
         }
     }
+
     private static void play(int randomNumber) {
         for (int i = 3; i > 0; i--) {
             System.out.println("Количество попыток: " + i);
@@ -53,7 +54,7 @@ public class GuessTheNumber {
                 "0 - для выхода..");
 
         while (true) {
-           String answer = scanner.next();
+            String answer = scanner.next();
 
             if (answer.equals("1")) {
                 System.out.println("Круто! Поехали снова!");
