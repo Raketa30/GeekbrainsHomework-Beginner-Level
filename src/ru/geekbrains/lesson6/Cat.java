@@ -15,18 +15,18 @@ public class Cat extends Animal{
     @Override
     public void run(int distance) {
         if (distance == 0) {
-            System.out.printf("%s стоит на месте%n", getName());
+            System.out.printf("Кот %s стоит на месте%n", getName());
 
         } else if (distance <= 200 && distance > 0) {
-            System.out.printf("%s пробежал %d метров.%n", getName(), distance);
+            System.out.printf("Кот %s пробежал %d метров.%n", getName(), distance);
 
         } else {
-            System.out.printf("%s пробежал 200 метров и лег%n", getName());
+            System.out.printf("Кот %s пробежал 200 метров и лег%n", getName());
         }
     }
 
     @Override
     public void swim(int distance) {
-        System.out.println("Кот отказался плыть%n");
+        System.out.println("Кот " + getName() + " отказался плыть, потому что не умеет.");
     }
 }
