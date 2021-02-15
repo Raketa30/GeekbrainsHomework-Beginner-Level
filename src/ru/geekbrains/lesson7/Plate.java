@@ -18,7 +18,7 @@ public class Plate {
 
         } else {
             if(food != 0 && food > 0) {
-                power = Math.abs(food - appetite);
+                power = food;
                 food = 0;
                 isEmpty = true;
             }
