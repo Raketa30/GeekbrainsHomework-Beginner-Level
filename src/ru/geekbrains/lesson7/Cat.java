@@ -29,7 +29,7 @@ public class Cat {
     }
 
     public void eat(Plate plate) {
-        printCatHungryStatus(); // for test
+        System.out.println(toString());; // for test
 
         if (plate.isEmpty()) {
             System.out.println(name + " визжит по-кошачьи мяяу мяяяяу насыпь еды кожаный");
@@ -57,16 +57,16 @@ public class Cat {
             }
         }
 
-        printCatHungryStatus(); //for test
+        System.out.println(toString()); //for test
         System.out.println();
     }
 
-    private void printCatHungryStatus() {
-        System.out.println("Cat{" +
+    @Override
+    public String toString() {
+        return "Cat{" +
                 "name='" + name + '\'' +
                 ", appetite=" + appetite +
                 ", isFull=" + isFull +
-                '}'
-        );
+                '}';
     }
 }
