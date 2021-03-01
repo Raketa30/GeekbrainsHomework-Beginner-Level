@@ -181,6 +181,7 @@ public class ActionPanel extends JPanel {
 
             case ("/"):
                 if (Double.parseDouble(b) == 0) {
+                    pushedPointButton = true;
                     pushedEqualButton = true;
                     return "Err";
                 }
