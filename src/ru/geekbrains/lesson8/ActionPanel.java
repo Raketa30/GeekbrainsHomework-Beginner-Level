@@ -154,7 +154,7 @@ public class ActionPanel extends JPanel {
 
     private String process(String text) {
         System.out.println(text);
-        String[] processArr = text.split(" ");
+        String[] processArr = text.split("\\s+");
 
         if (processArr.length == 3) {
             return calculate(processArr[0], processArr[1], processArr[2]);
