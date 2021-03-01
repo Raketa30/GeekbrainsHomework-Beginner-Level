@@ -23,8 +23,8 @@ public class DigitButtonListener implements ActionListener {
             }
 
             if (actionPanel.isPushedActionButton()) {//обнулить текстфилд плосле нажатия кнопки действия
-
                 textField.setText("");
+                actionPanel.setPushedPointButton(false);
                 actionPanel.setPushedActionButton(false);
             }
 

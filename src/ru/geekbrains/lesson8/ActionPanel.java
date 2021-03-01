@@ -1,15 +1,10 @@
 package ru.geekbrains.lesson8;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.swing.*;
 import java.awt.*;
 
 public class ActionPanel extends JPanel {
-    private StringBuilder answer;
-
-    private ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
-    private ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("Nashorn");
+    private final StringBuilder answer;
 
     private boolean pushedEqualButton = false;
     private boolean pushedActionButton = false;
@@ -42,7 +37,13 @@ public class ActionPanel extends JPanel {
         sum.addActionListener(e -> {
             if (!isPushedActionButton()) {
                 pushedActionButton = true;
-                answer.append("+");
+                answer.append(textField.getText());
+                String current = process(answer.toString());
+                textField.setText(current);
+                answer.setLength(0);
+                answer.append(current).append(" + ");
+            } else {
+                answer.replace(answer.length() - 3, answer.length() - 1, (" + "));
             }
         });
 
@@ -50,7 +51,13 @@ public class ActionPanel extends JPanel {
         subtract.addActionListener(e -> {
             if (!isPushedActionButton()) {
                 pushedActionButton = true;
-                answer.append("-");
+                answer.append(textField.getText());
+                String current = process(answer.toString());
+                textField.setText(current);
+                answer.setLength(0);
+                answer.append(current).append(" - ");
+            } else {
+                answer.replace(answer.length() - 3, answer.length() - 1, (" - "));
             }
         });
 
@@ -58,7 +65,13 @@ public class ActionPanel extends JPanel {
         multiply.addActionListener(e -> {
             if (!isPushedActionButton()) {
                 pushedActionButton = true;
-                answer.append("*");
+                answer.append(textField.getText());
+                String current = process(answer.toString());
+                textField.setText(current);
+                answer.setLength(0);
+                answer.append(current).append(" * ");
+            } else {
+                answer.replace(answer.length() - 3, answer.length() - 1, (" * "));
             }
         });
 
@@ -66,23 +79,39 @@ public class ActionPanel extends JPanel {
         divide.addActionListener(e -> {
             if (!isPushedActionButton()) {
                 pushedActionButton = true;
-                answer.append("/");
+                answer.append(textField.getText());
+                String current = process(answer.toString());
+                textField.setText(current);
+                answer.setLength(0);
+                answer.append(current).append(" / ");
+            } else {
+                answer.replace(answer.length() - 3, answer.length() - 1, (" / "));
             }
         });
 
         JButton sqrt = new JButton("√");
         sqrt.addActionListener(e -> {
-            pushedEqualButton = true;
-            double digit = Double.parseDouble(textField.getText());
-            double answer = Math.sqrt(digit);
-            textField.setText(String.valueOf(answer));
+            pushedActionButton = true;
+            answer.append(textField.getText());
+            double digit = Double.parseDouble(process(answer.toString()));
+            double sq = Math.sqrt(digit);
+            textField.setText(filter(sq));
+            answer.setLength(0);
+            answer.append(sq);
+
         });
 
         JButton remainder = new JButton("%");
         remainder.addActionListener(e -> {
             if (!isPushedActionButton()) {
                 pushedActionButton = true;
-                answer.append("%");
+                answer.append(textField.getText());
+                String current = process(answer.toString());
+                textField.setText(current);
+                answer.setLength(0);
+                answer.append(current).append(" % ");
+            } else {
+                answer.replace(answer.length() - 3, answer.length() - 1, (" % "));
             }
         });
 
@@ -96,12 +125,18 @@ public class ActionPanel extends JPanel {
 
         JButton eq = new JButton("=");
         eq.addActionListener(e -> {
-            pushedEqualButton = true;
+            if (!pushedEqualButton) {
+                answer.append(textField.getText());
+                textField.setText(process(answer.toString()));
+                answer.setLength(0);
+                pushedEqualButton = true;
+            }
         });
 
         JButton clear = new JButton("C");
         clear.addActionListener(e -> {
             textField.setText("0");
+            answer.setLength(0);
             pushedActionButton = false;
             pushedPointButton = false;
             pushedEqualButton = false;
@@ -117,8 +152,59 @@ public class ActionPanel extends JPanel {
         pointAndEqualPanel.add(pointBtn);
         pointAndEqualPanel.add(eq);
 
-
         clearBtnPanel.add(clear, BorderLayout.CENTER);
+    }
+
+    private String process(String text) {
+        System.out.println(text);
+        String[] processArr = text.split(" ");
+
+        if (processArr.length == 3) {
+            return String.valueOf(calculate(processArr[0], processArr[1], processArr[2]));
+        }
+
+        return processArr[0];
+    }
+
+    private String calculate(String a, String action, String b) {
+        double number = 0;
+
+        switch (action) {
+            case ("+"):
+                number = Double.parseDouble(a) + Double.parseDouble(b);
+                break;
+
+            case ("-"):
+                number = Double.parseDouble(a) - Double.parseDouble(b);
+                break;
+
+            case ("*"):
+                number = Double.parseDouble(a) * Double.parseDouble(b);
+                break;
+
+            case ("/"):
+                if (Double.parseDouble(b) == 0) {
+                    pushedEqualButton = true;
+                    return "Err";
+                }
+                number = Double.parseDouble(a) / Double.parseDouble(b);
+                break;
+
+            case ("%"):
+                number = Double.parseDouble(a) % Double.parseDouble(b);
+                break;
+        }
+
+        return filter(number);
+    }
+
+    private String filter(double number) {
+        if (number * 10 % 10 == 0) {
+            return String.valueOf((long) number);
+
+        } else {
+            return String.valueOf(number);
+        }
     }
 
     public boolean isPushedEqualButton() {
@@ -133,11 +219,7 @@ public class ActionPanel extends JPanel {
         this.pushedActionButton = pushedActionButton;
     }
 
-    public StringBuilder getAnswer() {
-        return answer;
-    }
-
-    public ScriptEngine getScriptEngine() {
-        return scriptEngine;
+    public void setPushedPointButton(boolean pushedPointButton) {
+        this.pushedPointButton = pushedPointButton;
     }
 }
