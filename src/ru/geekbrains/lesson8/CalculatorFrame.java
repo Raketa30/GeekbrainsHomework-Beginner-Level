@@ -8,7 +8,7 @@ public class CalculatorFrame extends JFrame {
         setTitle("Calculator v. 1.0.1b");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        setBounds(0, 0, 300, 300);
+        setBounds(300, 300, 300, 300);
         setResizable(false);
 
         CalculatorScreen screen = new CalculatorScreen();

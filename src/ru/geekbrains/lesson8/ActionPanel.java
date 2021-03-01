@@ -91,14 +91,11 @@ public class ActionPanel extends JPanel {
 
         JButton sqrt = new JButton("√");
         sqrt.addActionListener(e -> {
-            pushedActionButton = true;
             answer.append(textField.getText());
             double digit = Double.parseDouble(process(answer.toString()));
             double sq = Math.sqrt(digit);
             textField.setText(filter(sq));
             answer.setLength(0);
-            answer.append(sq);
-
         });
 
         JButton remainder = new JButton("%");
@@ -160,7 +157,7 @@ public class ActionPanel extends JPanel {
         String[] processArr = text.split(" ");
 
         if (processArr.length == 3) {
-            return String.valueOf(calculate(processArr[0], processArr[1], processArr[2]));
+            return calculate(processArr[0], processArr[1], processArr[2]);
         }
 
         return processArr[0];
