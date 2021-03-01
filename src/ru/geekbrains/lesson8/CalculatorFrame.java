@@ -5,9 +5,7 @@ import java.awt.*;
 
 public class CalculatorFrame extends JFrame {
     public CalculatorFrame() {
-        ImageIcon icon = new ImageIcon("ru/geekbrains/lesson8/calc.png");
-        setIconImage(icon.getImage());
-        setTitle("Calculator");
+        setTitle("Calculator v. 1.0.1b");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setBounds(0, 0, 300, 300);

@@ -7,7 +7,7 @@ public class Keyboard extends JPanel {
     public Keyboard(JTextField textField) {
 
         ActionPanel actionPanel = new ActionPanel(textField);
-        DigitPanel digitPanel = new DigitPanel(textField);
+        DigitPanel digitPanel = new DigitPanel(textField, actionPanel);
         actionPanel.setPreferredSize(new Dimension(100, 250));
 
         setLayout(new BorderLayout());

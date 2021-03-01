@@ -3,15 +3,11 @@ package ru.geekbrains.lesson8;
 import javax.swing.*;
 import java.awt.*;
 
-public class DigitPanel extends JPanel{
-    private final JPanel top;
-    private final JPanel bottomZero;
-    private DigitButtonListener buttonListener;
-
-    public DigitPanel(JTextField textField) {
-        top = new JPanel();
-        bottomZero = new JPanel();
-        buttonListener = new DigitButtonListener(textField);
+public class DigitPanel extends JPanel {
+    public DigitPanel(JTextField textField, ActionPanel actionPanel) {
+        JPanel top = new JPanel();
+        JPanel bottomZero = new JPanel();
+        DigitButtonListener buttonListener = new DigitButtonListener(textField, actionPanel);
 
         setLayout(new BorderLayout());
 

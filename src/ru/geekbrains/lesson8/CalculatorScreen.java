@@ -11,7 +11,7 @@ public class CalculatorScreen extends JPanel{
 
         Font font = new Font("Roboto", Font.BOLD, 20);
 
-        textField = new JTextField();
+        textField = new JTextField("0");
         textField.setPreferredSize(new Dimension(300, 50));
         textField.setHorizontalAlignment(JTextField.RIGHT);
         textField.setEditable(false);
@@ -23,6 +23,4 @@ public class CalculatorScreen extends JPanel{
     public JTextField getTextField() {
         return textField;
     }
-
-
 }
